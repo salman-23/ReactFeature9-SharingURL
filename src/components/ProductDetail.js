@@ -1,13 +1,17 @@
 import { useParams, Redirect, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
 // Components
 import DeleteButton from "./buttons/DeleteButton";
 // Styling
 import { DetailWrapper } from "../styles";
 
-const ProductDetail = (props) => {
+const ProductDetail = () => {
+  const products = useSelector((state) => state.products);
+
   const { productSlug } = useParams();
-  const product = props.products.find(
+
+  const product = products.find(
     (product) => product.slug === productSlug
   );
 
@@ -25,7 +29,6 @@ const ProductDetail = (props) => {
       <p>{product.price} KD</p>
       <DeleteButton
         productId={product.id}
-        deleteProduct={props.deleteProduct}
       />
     </DetailWrapper>
   );
