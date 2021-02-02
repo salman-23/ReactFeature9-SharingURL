@@ -16,6 +16,7 @@ import NavBar from "./components/NavBar";
 import ProductDetail from "./components/ProductDetail";
 import ProductList from "./components/ProductList";
 import { ThemeProvider } from "styled-components";
+import ProductForm from "./components/ProductForm";
 
 const theme = {
   light: {
@@ -49,11 +50,14 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        <Route path="/products/create">
+          <ProductForm />
+        </Route>
         <Route path="/products/:productSlug">
-          <ProductDetail  />
+          <ProductDetail />
         </Route>
         <Route path="/products">
-          <ProductList  />
+          <ProductList />
         </Route>
       </Switch>
     </ThemeProvider>

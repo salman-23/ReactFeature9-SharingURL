@@ -97,3 +97,21 @@ export const ThemeButton = styled.button`
 export const Title = styled.h1`
   text-align: center;
 `;
+
+export const AddButtonStyled = styled.button`
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  margin-left: 10px;
+  border-radius: 1rem;
+  color: #000;
+  background-color: #00af91;
+`;
+
+export const SubmitButtonStyled = styled.button`
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  margin-left: 10px;
+  border-radius: 1rem;
+  color: #000;
+  background-color: #00aff1;
+`;
