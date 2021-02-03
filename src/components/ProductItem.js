@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 
 // Components
 import DeleteButton from "./buttons/DeleteButton";
+import UpdateButton from "./buttons/UpdateButton";
 // Styling
 import { ProductWrapper } from "../styles";
 
@@ -23,6 +24,7 @@ const ProductItem = (props) => {
         productId={product.id}
         deleteProduct={props.deleteProduct}
       />
+      <UpdateButton productSlug={product.slug}>Update</UpdateButton>
     </ProductWrapper>
   );
 };

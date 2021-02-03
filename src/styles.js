@@ -100,7 +100,7 @@ export const Title = styled.h1`
 
 export const AddButtonStyled = styled.button`
   display: inline-block;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1rem;
   margin-left: 10px;
   border-radius: 1rem;
   color: #000;
@@ -109,9 +109,18 @@ export const AddButtonStyled = styled.button`
 
 export const SubmitButtonStyled = styled.button`
   display: inline-block;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1rem;
   margin-left: 10px;
   border-radius: 1rem;
   color: #000;
   background-color: #00aff1;
+`;
+
+export const UpdateButtonStyled = styled.button`
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  margin-left: 10px;
+  border-radius: 1rem;
+  color: #fff;
+  background-color: #8f0048;
 `;

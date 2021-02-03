@@ -3,17 +3,16 @@ import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 // Components
 import DeleteButton from "./buttons/DeleteButton";
+import UpdateButton from "./buttons/UpdateButton";
 // Styling
 import { DetailWrapper } from "../styles";
 
 const ProductDetail = () => {
   const products = useSelector((state) => state.products);
 
-  const { productSlug } = useParams();
+  const productSlug = useParams().productSlug;
 
-  const product = products.find(
-    (product) => product.slug === productSlug
-  );
+  const product = products.find((product) => product.slug === productSlug);
 
   if (!product) return <Redirect to="/products" />;
 
@@ -27,9 +26,8 @@ const ProductDetail = () => {
       <img src={product.image} alt={product.name} />
       <p>{product.description}</p>
       <p>{product.price} KD</p>
-      <DeleteButton
-        productId={product.id}
-      />
+      <DeleteButton productId={product.id} />
+      <UpdateButton productSlug={product.slug}>Update</UpdateButton>
     </DetailWrapper>
   );
 };

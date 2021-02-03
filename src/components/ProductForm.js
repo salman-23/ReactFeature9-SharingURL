@@ -1,20 +1,30 @@
-import { useState } from "react";
-import { SubmitButtonStyled } from "../styles";
-import { useDispatch } from "react-redux";
-import { createProduct } from "../store/actions";
-import { useHistory } from "react-router-dom";
+import { useState} from "react";
+import { SubmitButtonStyled, UpdateButtonStyled } from "../styles";
+import { useDispatch,useSelector } from "react-redux";
+import { createProduct, updateProduct } from "../store/actions";
+import { useHistory, useParams } from "react-router-dom";
 
 const ProductForm = () => {
   const history = useHistory();
 
   const dispatch = useDispatch();
 
-  const [product, setProduct] = useState({
-    name: "",
-    description: "",
-    price: 0,
-    image: "",
-  });
+  const { productSlug } = useParams();
+
+  const foundProduct = useSelector((state) =>
+    state.products.find((product) => product.slug === productSlug)
+  );
+
+  const [product, setProduct] = useState(
+    foundProduct
+      ? foundProduct
+      : {
+          name: "",
+          description: "",
+          price: 0,
+          image: "",
+        }
+  );
 
   const handleChnage = (event) => {
     setProduct({ ...product, [event.target.name]: event.target.value });
@@ -31,7 +41,8 @@ const ProductForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createProduct(product));
+    if (foundProduct) dispatch(updateProduct(product));
+    else dispatch(createProduct(product));
     restForm();
     history.push("/products");
   };
@@ -39,6 +50,7 @@ const ProductForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <h1>{foundProduct ? "Update" : "Create"} Product</h1>
         <label>
           Name:
           <input
@@ -79,6 +91,10 @@ const ProductForm = () => {
         <SubmitButtonStyled type="submit" value="Submit">
           Submit
         </SubmitButtonStyled>
+
+        <UpdateButtonStyled type="button">
+          {foundProduct ? "Update" : "Create"} Product
+        </UpdateButtonStyled>
       </form>
     </div>
   );
