@@ -3,13 +3,18 @@ import { ListWrapper } from "../styles";
 // Components
 import ProductItem from "./ProductItem";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import AddButton from "./buttons/AddButton";
+import Loading from "./Loading";
 
 const ProductList = () => {
   const [query, setQuery] = useState("");
   const products = useSelector((state) => state.products);
+  const loading = useSelector((state) => state.loading);
+
+  if (loading) return <Loading />;
 
   const productList = products
     .filter((product) =>
@@ -20,10 +25,8 @@ const ProductList = () => {
   return (
     <div>
       <SearchBar setQuery={setQuery} />
-      <ListWrapper>
-        {productList}
         <AddButton />
-      </ListWrapper>
+      <ListWrapper>{productList}</ListWrapper>
     </div>
   );
 };

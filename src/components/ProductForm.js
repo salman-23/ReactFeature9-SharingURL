@@ -88,11 +88,11 @@ const ProductForm = () => {
             onChange={handleChnage}
           />
         </label>
-        <SubmitButtonStyled type="submit" value="Submit">
+        {/* <SubmitButtonStyled type="submit" value="Submit">
           Submit
-        </SubmitButtonStyled>
+        </SubmitButtonStyled> */}
 
-        <UpdateButtonStyled type="button">
+        <UpdateButtonStyled type="submit">
           {foundProduct ? "Update" : "Create"} Product
         </UpdateButtonStyled>
       </form>
