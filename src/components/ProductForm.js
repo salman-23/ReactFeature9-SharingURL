@@ -1,8 +1,9 @@
-import { useState} from "react";
+import { useState } from "react";
 import { SubmitButtonStyled, UpdateButtonStyled } from "../styles";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createProduct, updateProduct } from "../store/actions";
 import { useHistory, useParams } from "react-router-dom";
+import AddButton from "./buttons/AddButton";
 
 const ProductForm = () => {
   const history = useHistory();
@@ -37,6 +38,10 @@ const ProductForm = () => {
       price: 0,
       image: "",
     });
+  };
+
+  const handleImage = (event) => {
+    setProduct({ ...product, image: event.target.files[0] });
   };
 
   const handleSubmit = (event) => {
@@ -81,18 +86,18 @@ const ProductForm = () => {
         <label>
           Image:
           <input
-            type="text"
+            type="file"
             name="image"
             alt=""
-            value={product.image}
-            onChange={handleChnage}
+            // value={product.image}
+            onChange={handleImage}
           />
         </label>
         {/* <SubmitButtonStyled type="submit" value="Submit">
           Submit
         </SubmitButtonStyled> */}
 
-        <UpdateButtonStyled type="submit">
+        <UpdateButtonStyled  type="submit">
           {foundProduct ? "Update" : "Create"} Product
         </UpdateButtonStyled>
       </form>
